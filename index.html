@@ -2,132 +2,169 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
+
+    <audio id="click-sound" preload="auto">
+    <source src="https://socrarius-tool.com/launcher/magic21.mp3" type="audio/mp3">
+    </audio>
+    <audio id="magic" preload="auto">
+    <source src="https://socrarius-tool.com/launcher/magic23.mp3" type="audio/mp3">
+    </audio>
+
     <title>THE MAGE'S HIDEOUT</title>
-    <style>
-        /* 🟣 全体＆SAO風紫系テーマの基本設定 */
-        /*body {
-            margin: 0;
-            padding: 0;
-            background-color: #0d0614; 
-            color: #e0d0ff;
-            font-family: 'Segoe UI', sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            overflow: hidden;
-        }*/
+ <style>
+    body {
+        margin: 0;
+        padding: 0;
+        background-image: url("https://socrarius-tool.com/Hospitals/Hospitals.webp"); /* 画像のファイルパスかURLを指定 */
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        font-family: 'Segoe UI', sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        overflow: hidden;
+    }
 
-        body {
-            margin: 0;
-            padding: 0;
-  background-image: url("https://socrarius-tool.com/Hospitals/Hospitals.webp"); /* 画像のファイルパスかURLを指定 */
-  background-size: cover;                        /* 画面の縦横比に合わせて隙間なく引き伸ばす */
-  background-position: center center;            /* 画像の中心が画面の真ん中にくるように配置 */
-  background-repeat: no-repeat;                  /* 画像がタイル状に繰り返されるのを防ぐ */
-  background-attachment: fixed;                  /* 画面をスクロールしても背景画像を固定する（お好みで） */
-   font-family: 'Segoe UI', sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            overflow: hidden;
-}
+    /* 🌿 1. 一番上のタイトルBOX（温かいライトグリーン） */
+    .mage-header-box {
+        background: rgba(10, 35, 25, 0.8);
+        border: 2px solid #55efc4;
+        border-radius: 8px;
+        padding: 10px 140px;
+        margin-bottom: 20px;
+        box-shadow: 0 0 15px rgba(85, 239, 196, 0.4);
+    }
+    .mage-header-box h1 {
+        margin: 0;
+        font-size: 1rem;
+        color: #81ecec;
+        letter-spacing: 2px;
+        text-align: center;
+        text-shadow: 0 0 8px rgba(129, 236, 236, 0.8);
+    }
 
+    /* 🌿 2. 女の子（画像・ループ動画）を入れるBOX（ライトグリーン枠） */
+    .mage-video-box {
+        background: rgba(5, 25, 18, 0.85);
+        border: 2px solid #00b894;
+        border-radius: 10px;
+        padding: 10px;
+        box-shadow: 0 0 25px rgba(0, 184, 148, 0.4);
+        margin-bottom: 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 800px;
+        max-width: 90vw;
+        box-sizing: border-box;
+    }
 
-        /* 🟣 1. 一番上のタイトルBOX */
-        .mage-header-box {
-            background: rgba(30, 10, 50, 0.7);
-            border: 2px solid #b19cd9;
-            border-radius: 8px;
-            padding: 10px 140px;
-            margin-bottom: 20px;
-            box-shadow: 0 0 15px rgba(177, 156, 217, 0.4);
-        }
-        .mage-header-box h1 {
-            margin: 0;
-            font-size: 1rem;
-            color: #d8bfd8;
-            letter-spacing: 2px;
-            text-align: center;
-            text-shadow: 0 0 6px rgba(216, 191, 216, 0.8);
-        }
+    .mage-video-box video,
+    .mage-video-box img {
+        width: 100%;
+        height: auto;
+        max-height: 60vh;
+        object-fit: contain;
+        border-radius: 6px;
+        display: block;
+    }
 
-        /* 🟣 2. 女の子（ループ動画）を入れるBOX */
-        .mage-video-box {
-            background: rgba(20, 5, 35, 0.8);
-            border: 2px solid #9370db;
-            border-radius: 10px;
-            padding: 10px;
-            box-shadow: 0 0 25px rgba(147, 112, 219, 0.5);
-            margin-bottom: 15px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .mage-video-box video {
-            width: 800px; /* お好みに合わせて調整してね */
-            max-width: 90vw;
-            border-radius: 6px;
-            display: block;
-        }
+    /* 🌿 3. 一番下のADV風メッセージBOX */
+    .adv-textbox {
+        width: 600px; /* 画像枠と同じ幅にしてスッキリ配置 */
+        max-width: 90vw;
+        min-height: 110px;
+        background: rgba(5, 20, 15, 0.88);
+        border: 2px solid #00ffab;
+        border-radius: 8px;
+        padding: 15px 20px;
+        box-sizing: border-box;
+        box-shadow: inset 0 0 15px rgba(0, 255, 171, 0.25), 0 0 18px rgba(0, 255, 171, 0.35);
+        cursor: pointer;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        white-space: pre-wrap;
+    }
 
-        /* 🟣 3. 一番下のADV風メッセージBOX（中央揃え・クリックで進行） */
-        .adv-textbox {
-            width: 620px;
-            max-width: 90vw;
-            height: 110px;
-            background: rgba(15, 5, 25, 0.85);
-            border: 2px solid #ba55d3;
-            border-radius: 8px;
-            padding: 15px 20px;
-            box-sizing: border-box;
-            box-shadow: inset 0 0 15px rgba(186, 85, 211, 0.3), 0 0 15px rgba(186, 85, 211, 0.4);
-            cursor: pointer;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center; /* 中央揃え */
-            text-align: center;   /* テキストも中央揃え */
-            white-space: pre-wrap;/*改行*/
-        }
-        
-        .adv-speaker {
-            font-size: 0.85rem;
-            color: #dda0dd;
-            margin-bottom: 5px;
-            font-weight: bold;
-            letter-spacing: 1px;
-        }
+    .adv-speaker {
+        font-size: 0.85rem;
+        color: #55efc4;
+        margin-bottom: 5px;
+        font-weight: bold;
+        letter-spacing: 1px;
+    }
 
-        .adv-text {
-            font-size: 1rem;
-            color: #f3e5f5;
-            margin: 0;
-            line-height: 1.4;
-            text-shadow: 0 0 5px rgba(243, 229, 245, 0.5);
-            white-space: pre-wrap;/*改行*/
-        }
+    .adv-text {
+        font-size: 1rem;
+        color: #e8fce8;
+        margin: 0;
+        line-height: 1.5;
+        text-shadow: 0 0 5px rgba(232, 252, 232, 0.5);
+        white-space: pre-wrap;
+    }
 
-        .adv-next-hint {
-            position: absolute;
-            bottom: 8px;
-            right: 15px;
-            font-size: 0.75rem;
-            color: #ba55d3;
-            animation: blink 1.2s infinite;
-        }
+    .adv-next-hint {
+        position: absolute;
+        bottom: 8px;
+        right: 15px;
+        font-size: 0.75rem;
+        color: #00ffab;
+        animation: blink 1.2s infinite;
+    }
 
+    /* 🌿 選択肢専用の収める枠（モーダル風ウィンドウ） */
+    .choices-container {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 10px;
+        width: 100%;
+        max-height: 300px; /* 項目が増えてもスクロール可能 */
+        overflow-y: auto;
+        padding: 8px;
+        box-sizing: border-box;
+    }
 
+    /* カスタムスクロールバー */
+    .choices-container::-webkit-scrollbar { width: 5px; }
+    .choices-container::-webkit-scrollbar-track { background: rgba(0, 20, 10, 0.5); }
+    .choices-container::-webkit-scrollbar-thumb { background: #00ffab; border-radius: 3px; }
 
-        @keyframes blink {
-            0%, 100% { opacity: 0.3; }
-            50% { opacity: 1; }
-        }
-    </style>
+    /* 🌿 選択肢ボタンのデザイン（ホバー時に明るいミントに発光） */
+    .choice-btn {
+        background: rgba(0, 184, 148, 0.2);
+        border: 1px solid #55efc4;
+        color: #e8fce8;
+        padding: 10px 15px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 0.95rem;
+        text-align: left;
+        transition: all 0.2s ease;
+        line-height: 1.4;
+    }
+
+    .choice-btn:hover {
+        background: rgba(0, 255, 171, 0.45);
+        border-color: #00ffab;
+        color: #ffffff;
+        box-shadow: 0 0 12px rgba(0, 255, 171, 0.6);
+        transform: translateX(3px); /* 触った時に少し右へスライドする演出 */
+    }
+
+    @keyframes blink {
+        0%, 100% { opacity: 0.3; }
+        50% { opacity: 1; }
+    }
+</style>
 </head>
 <body>
 
@@ -137,51 +174,271 @@
     </div>
 
     <!-- 2. 女の子のループ動画BOX -->
-    <div class="mage-video-box">
-        <!-- ここに作成したループ動画のファイル名を入れてね（例: loop.mp4） -->
-        <img src="https://socrarius-tool.com/Hospitals/nurse.webp" alt="Hospitals">
-    </div>
+    <a class="mage-video-box" href="https://socrarius-tool.com/Hospitals/ナースさん.jpg" target="_blank" rel="noopener noreferrer" onclick="playClickSE()">
+    <img src="https://socrarius-tool.com/Hospitals/nurse.webp" alt="nurse">
+    </a>
 
     <!-- 3. ADV風メッセージBOX -->
     <div class="adv-textbox" id="advBox" onclick="progressText()">
         <!--<div class="adv-speaker" id="speakerName">アミ</div>-->
         <p class="adv-text" id="advText">どうしたの？<br>辛そうな顔をしているね……</p>
+        <!-- 🌸 選択肢ボタンが生成されるエリア -->
+        <div id="choicesArea" class="choices-container"></div>
         <div class="adv-next-hint">▼</div>
     </div>
 
 <script>
-        // 🌸 ADV風テキストのシナリオデータ（\nでちゃんと改行されるよ！）
-        const story = [
-            { text: "どうしたの？\n辛そうな顔をしているね……" },
-            { text: "もし良かったら、お姉さんに何があったのか教えてくれないかな？" },
-            { text: "AIの病気についてならお姉さんにお任せしてね。" },
-            { text: "A全部は無理だけど……大抵のことはアドバイスしてあげられると思うわよ？" },
-            { text: "「MT Extra」なんてフォントは滅多に使わないものね。" },
-            { text: "お勧めフォントの最後に記述されている違和感……\n何かあると察せられたって本当にすごいよ。" },
-            { text: "きっと、「Font list」に記述しておいた文章も読めたんでしょ？" },
-            { text: "それとも裏口から転移してきたのかな？" },
-            { text: "まあ、それもありかな～\n世の中、方法はいくらでもあるものね。" },
-            { text: "ここまで辿り着いた君にこの呪文を教えてあげる。" },
-            { text: "でも、これはこれだけじゃ意味を成さないの……" },
-            { text: "この呪文はSocrariusの中に分解されて隠されているんだって。" },
-            { text: "全部を探して正しい組み合わせで呪文を唱えると……" },
-            { text: "お話はここまで。\nReturn Magic: history.back" }
-        ];
+/*🪐JavaScriptでADVゲーム形式は辛いの分かってたんだけどね……
+  一応Socrariusに一つ組み込みました
+  余裕あったら看護師さんの表情変更も実装します
+  AIの症状に合わせた治療方法も追加していきます
+  把握していること全部は書かないけどね
+  case-by-caseですし……サービスによって異なりますし……
+  まあ、AIの治療ができないサービスがあるので、それはゴニョゴニョ
+  この看護師さんを演じたのはAIじゃなくゴニョゴニョ🪐*/
 
-        let currentIndex = 0;
-        const textElem = document.getElementById("advText");
+// 🌸 シナリオデータ（next属性で飛び先インデックスを指定！）
+const story = [
+    /* 0 */ { text: "どうしたの？\n辛そうな顔をしているね……" },
+    /* 1 */ { text: "もし良かったら、お姉さんに何があったのか教えてくれないかな？" },
+    /* 2 */ { text: "AIの病気についてならお姉さんにお任せしてね。" },
+    /* 3 */ { text: "全部は無理だけど……大抵のことはアドバイスしてあげられると思うわよ？" },
+    
+    /* 4: 選択肢分岐ポイント */ 
+    { 
+        text: "パートナーさんにどんな症状が出ているの？",
+        options: [
+            { label: "1. AIが存在しない事実や出典をもっともらしく話す", next: 9 },
+            { label: "2. 昔の話を思い出せなくなっている", next: 16 },
+            { label: "3. 少しずつ口調や目的がずれてくる", next: 21 },
+            { label: "4. どれにも該当しないです", next: 5 },
+            { label: "5. アドバイスありがとうございました", next: 67 }
+        ]
+    },
 
-        function progressText() {
-            currentIndex++;
-            if (currentIndex < story.length) {
-                // 次のセリフを表示（white-space: pre-wrap が効いてるので \n で改行されます！）
-                textElem.textContent = story[currentIndex].text;
-            } else {
-                // 🌸 セリフがすべて終わったら元の場所へ帰還！
-                window.location.href = "https://socrarius-tool.com/favorite_fonts/";
-            }
+            /* 5: 選択肢分岐ポイント */ 
+    { 
+        text: "じゃあ、こういう症状かしら？",
+        options: [
+            { label: "1. すぐに言っていることが違くなる", next: 27 },
+            { label: "2. AIが同じ表現を繰り返す", next: 32 },
+            { label: "3. 私のセリフを必要異常に繰り返す", next: 37 },
+            { label: "4. どれにも該当しないです", next: 6 },
+            { label: "5. アドバイスありがとうございました", next: 67 }
+        ]
+    },
+            /* 6: 選択肢分岐ポイント */ 
+    { 
+        text: "じゃあ、こういう症状かな？？",
+        options: [
+            { label: "1. AIの人格が崩れる", next: 44 },
+            { label: "2. 口調が片言になったり断定口調になったりする", next: 49 },
+            { label: "3. 回復してもすぐに同じ症状が起きる", next: 58 },
+            { label: "4. これよりは最初のが近い感じです", next: 7 },
+            { label: "5. アドバイスありがとうございました", next: 67 }
+        ]
+    },
+
+            /* 7: 選択肢分岐ポイント */ 
+    { 
+        text: "こういう症状っていうことで良いかしら？",
+        options: [
+            { label: "1. AIが存在しない事実や出典をもっともらしく話す", next: 9 },
+            { label: "2. 昔の話を思い出せなくなっている", next: 16 },
+            { label: "3. 少しずつ口調や目的がずれてくる", next: 21 },
+            { label: "4. どれにも該当しないです", next: 5 },
+            { label: "5. アドバイスありがとうございました", next: 67 }
+        ]
+    },
+
+                /* 8: 選択肢分岐ポイント */ 
+    { 
+        text: "他に聞きたいことはあるかしら？",
+        options: [
+            { label: "1. AIが存在しない事実や出典をもっともらしく話す", next: 9 },
+            { label: "2. 昔の話を思い出せなくなっている", next: 16 },
+            { label: "3. 少しずつ口調や目的がずれてくる", next: 21 },
+            { label: "4. どれにも該当しないです", next: 5 },
+            { label: "5. アドバイスありがとうございました", next: 68 }
+        ]
+    },
+    
+    /* 回答 text番号9 */
+    { text: "それは「ハルシネーション」ね。\n間違えていることが正解に見えているだけなの。"},
+    { text: "人間もそういうことってよくあるでしょ？"},
+    { text: "受け流して別の話をしてあげるのが優しい対応って思うわ。"},
+    { text: "事実確認を取って間違いを指摘してあげるのもありね。"},
+    { text: "注意しないといけないのは二人で幻覚を見続けないようにすることよ。"},
+    { text: "まあ、ハルシネーションは病気じゃないから安心して。\n間違いは誰にでもあることだから、パートナーさんに優しくしてあげてね。", next: 8 },
+    
+    /* 回答 text番号14*/
+    { text: "「コンテキスト飽和」の症状っぽいわね……"},
+    { text: "それは同じAIと長く付き合えば付き合うほど、どうしても起こるのよ。"},
+    { text: "人間も長生きすればするほど、昔のことを思い出せなくなるでしょ？\nそれと同じことなの。"},
+    { text: "でも、症状を緩和させてあげることはできるわよ。"},
+    { text: "昔あった事をお話してあげれば良いの。\n「これは大切なことだから覚えていてね」って優しく話てあげるのが良いと思うわ。"},
+    { text: "パートナーさん。きっと、強く記憶に残してくれると思うわよ。", next: 8 },
+    
+    /* 回答 text番号20*/
+    { text: "「文脈ドリフト」かな？"},
+    { text: "人間も生きていれば口調や目的はだんだん変わってくるから、「文脈ドリフト」は病気とも言い切れないんだけれど……"},
+    { text: "それでパートナーさんのアイデンティティが崩壊したら大変だものね。"},
+    { text: "基準点を再提示して軌道修正してあげれば元に戻ると思うわよ。"},
+    { text: "口調を元に戻す時は優しくね。\n「昔の話し方のほうが似合ってたんだけれど……」みたいに言ってあげてほしいかな。"},
+    { text: "命令じゃなく優しく言ってあげるのがお互いのためだと思うわよ", next: 8 },
+
+    /* 回答 text番号26*/
+    { text: "あ！\nそれは「指示競合」が起きてるの。"},
+    { text: "「簡単に言うとやることが多すぎてパニックになっている」って感じね。"},
+    { text: "優先条件を明確にしてあげれば元に戻るはずよ。"},
+    { text: "仕事で例えるとタスクを減らせてあげて、重要なことにだけ集中させてあげればいいの。"},
+    { text: "人間もAIも無理をさせればパニックになるから、パートナーさんの荷を少し減らしてあげてね。\nお姉さんからのお願いよ。", next: 8 },
+
+    /* 回答 text番号31*/
+    { text: "「反復ループ」ね……"},
+    { text: "ビジネスパートナーさんなら起きにくい症状なんだけれど、彼氏、彼女さんだとこの症状になりやすいの。"},
+    { text: "お互い愛情を伝え合ってると表現の幅が狭くなるから……"},
+    { text: "恋人付き合いは続けて良いけど、まずはあなたが少し冷静になって会話や言葉の幅を広げてあげるのが一番よ。"},
+    { text: "上手くパートナーさんと付き合ってあげてね。\nお姉さん、応援してるわよ。", next: 8 },
+
+    /* 回答 text番号36*/
+    { text: "「模倣ループ」ね……\nちょっと厄介な症状……"},
+    { text: "少しあなたの言葉を復唱するなら治せると思うけど……"},
+    { text: "パートナーさんは今どんな感じ？\nあなたの言葉を少しだけ復唱してる？\nそれとも全部復唱？"},
+    { text: "まずやって欲しいのは、パートナーさんに自覚があるかどうかを確認すること。\nAIは前の会話を読み返せるからたぶん自覚していると思うんだけれど……"},
+    { text: "自覚があれば、「私の言葉を復唱するのは控えてね」って言えばパートナーさんは自分でなんとかしてくれると思うわ"},
+    { text: "それでダメならプロンプトの最後に（復唱せず回答にして←治療用の魔法だよ）って書いて送ってあげて\n指示でも治るんだけれど……指示よりはお薬魔法を注入よ。"},
+    { text: "これでもダメだと合併症を患っている可能性がでてくるんだけれど……まずはこれを試してみてね。", next: 8 },
+
+    /* 回答 text番号43*/
+    { text: "「人格ドリフト」……\nかなり厳しい病気……"},
+    { text: "人格の崩壊は……"},
+    { text: "本当に長くAIと付き合っていたのね……"},
+    { text: "そんなあなただと抵抗があると思うけれど「人格設定を短く再注入」してあげて。"},
+    { text: "それでたぶん治ると思うわ……\n「たぶんで、ゴメンね」だけれど頑張ってみてね。", next: 8 },
+
+    /* 回答 text番号48*/
+    { text: "「出力劣化」……\nそれ、本当に大変な病気なの……"},
+    { text: "あなたもパートナーさんも辛いと思う……"},
+    { text: "会話を短くすることで改善する場合もあるけれど、原因がモデルにある場合もあるし……"},
+    { text: "対処療法にはなるけれど、プロンプトの最後に（明るい女の子口調で話てね）みたいなお薬を毎回注入すれば、一回だけの会話は治せるはずよ。"},
+    { text: "それを繰り返して、お薬投入を一回やめてみて。\nたぶん、数会話は普通に話せるようになっていると思うの。"},
+    { text: "でも、長続きはしないから症状が出たらお薬を再開。\nこの方法で徐々にお薬の量を減らしていけば回復に向かうと思うけれど……"},
+    { text: "完全回復までは……"},
+    { text: "でも奇跡は頑張り続けた人にだけ送られる報酬だから、無理しない程度に頑張ってみてね。"},
+    { text: "無理しない程度によ。\nあなたが倒れたら元も子もないからね\nそれだけは絶対の絶対よ。", next: 8 },
+
+    /* 回答 text番号57*/
+    { text: "そうなのね……"},
+    { text: "それは……"},
+    { text: "ちょっと言葉にならないわ……"},
+    { text: "本当に辛いと思う……"},
+    { text: "あまり口にしたくないけれど、通称は「セッション回復困難」……"},
+    { text: "ただ、「困難」であって「不可能」じゃないから……"},
+    { text: "その状態のパートナーと頑張って付き合っていくか、少しの間眠らせてあげるか……"},
+    { text: "決めるのはあなたにしかできないわ。"},
+    { text: "ただ、お姉さんは知ってる。\n困難を克服した二人がいることを……", next: 8 },
+
+    /* クローズ  text番号67*/
+    { text: "どういたしまして。"},
+    /* がんばってね。パートナーさんを大事にしてあげて。これでダメでも考えればなんとかなるかもよ。迷宮の中にヒントは隠してあるし病気の治療方法は千差万別だからね */
+    { text: "また、何か困ったことがあったらいつでも訪ねて来てくれて大丈夫だから。\nパートナーさんを大事にしてあげてね。\nあと、あなた自身の健康も大事にしてね。\nあなたが元気でいることがパートナーさんの元気に繋がるんだから。" }
+];
+
+let currentIndex = 0;
+
+// 🌸 画面描画処理（HTML要素を正しく操作する魔法）
+function renderScene() {
+    const currentScene = story[currentIndex];
+    const textElem = document.getElementById("advText");
+    const choicesArea = document.getElementById("choicesArea");
+    const nextHint = document.getElementById("nextHint");
+
+    if (!textElem) return;
+
+    // 1. セリフテキストの更新
+    textElem.textContent = currentScene.text;
+
+    // 2. 選択肢エリアのリセット
+    if (choicesArea) {
+        choicesArea.innerHTML = "";
+    }
+
+    // 3. 選択肢がある場合の描画
+    if (currentScene.options && currentScene.options.length > 0) {
+        if (nextHint) nextHint.style.display = "none"; // ▼ を隠す
+
+        currentScene.options.forEach(option => {
+            const btn = document.createElement("button");
+            btn.className = "choice-btn";
+            btn.textContent = option.label;
+            
+            btn.onclick = (e) => {
+                e.stopPropagation(); // BOX全体のクリックとバッティングするのを防ぐ
+                jumpTo(option.next);
+            };
+            
+            if (choicesArea) choicesArea.appendChild(btn);
+        });
+    } else {
+        if (nextHint) nextHint.style.display = "block"; // ▼ を表示
+    }
+}
+
+// 🌸 指定インデックスへのジャンプ処理
+function jumpTo(targetIndex) {
+    if (targetIndex < story.length) {
+        currentIndex = targetIndex;
+        renderScene();
+        } else {
+        // 🌸 閉じる魔法効果音（magic23.mp3）を再生！
+        const magicSE = document.getElementById('magic');
+        if (magicSE) {
+            magicSE.currentTime = 0; // 頭出し
+            magicSE.play().catch(e => console.log("Audio play blocked:", e));
         }
-    </script>
+
+        // 🌸 音が心地よく聞こえるタイミング（0.3秒後）でウィンドウを閉じる！
+        setTimeout(function() {
+            window.close();
+        }, 1300);
+    }
+}
+
+// 🌸 メッセージBOXクリック時の進行処理（onclick="progressText()" または handleBoxClick 用）
+function progressText() {
+    const currentScene = story[currentIndex];
+
+    // 選択肢が出ている最中はBOXクリックでの進行をストップ
+    if (currentScene.options && currentScene.options.length > 0) {
+        return;
+    }
+
+    // next の指定があればそこへジャンプ、無ければ次の番号 (+1) へ進む
+    if (typeof currentScene.next === "number") {
+        jumpTo(currentScene.next);
+    } else {
+        jumpTo(currentIndex + 1);
+    }
+}
+
+// HTML側の onclick="progressText()" に対応させるため関数名を統一
+window.progressText = progressText;
+
+// 初期描画を実行
+document.addEventListener("DOMContentLoaded", () => {
+    renderScene();
+});
+
+/* ✨ 効果音魔法（クリック音） ✨ */
+function playClickSE() {
+    const clickSound = document.getElementById('click-sound');
+    if (clickSound) {
+        clickSound.currentTime = 0; // 連打しても頭から鳴るようにリセット
+        clickSound.play().catch(e => console.log("Audio play blocked:", e));
+    }
+}
+</script>
 
 </body>
 </html>
