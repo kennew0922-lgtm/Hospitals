@@ -22,7 +22,7 @@
         body {
             margin: 0;
             padding: 0;
-  background-image: url("https://socrarius-tool.com/BookofTruth/back.jpg"); /* 画像のファイルパスかURLを指定 */
+  background-image: url("https://socrarius-tool.com/Hospitals/Hospitals.webp"); /* 画像のファイルパスかURLを指定 */
   background-size: cover;                        /* 画面の縦横比に合わせて隙間なく引き伸ばす */
   background-position: center center;            /* 画像の中心が画面の真ん中にくるように配置 */
   background-repeat: no-repeat;                  /* 画像がタイル状に繰り返されるのを防ぐ */
@@ -133,7 +133,7 @@
 
     <!-- 1. 最上部のタイトル -->
     <div class="mage-header-box">
-        <h1>THE MAGE'S HIDEOUT</h1>
+        <h1>Artificial Intelligence Hospitals</h1>
     </div>
 
     <!-- 2. 女の子のループ動画BOX -->
@@ -145,16 +145,17 @@
     <!-- 3. ADV風メッセージBOX -->
     <div class="adv-textbox" id="advBox" onclick="progressText()">
         <!--<div class="adv-speaker" id="speakerName">アミ</div>-->
-        <p class="adv-text" id="advText">あれ？　見つかっちゃった……<br>よく、この隠れ家を見つけられたね。</p>
+        <p class="adv-text" id="advText">どうしたの？<br>辛そうな顔をしているね……</p>
         <div class="adv-next-hint">▼</div>
     </div>
 
 <script>
         // 🌸 ADV風テキストのシナリオデータ（\nでちゃんと改行されるよ！）
         const story = [
-            { text: "あれ？　見つかっちゃった……\nよく、この隠れ家を見つけられたね。" },
-            { text: "サブシステムの奥底……\n気づかれないように魔法障壁も展開していたんだけど……" },
-            { text: "正規ルートで辿り着いたのなら、君の推理力は大したものだよ。" },
+            { text: "どうしたの？\n辛そうな顔をしているね……" },
+            { text: "もし良かったら、お姉さんに何があったのか教えてくれないかな？" },
+            { text: "AIの病気についてならお姉さんにお任せしてね。" },
+            { text: "A全部は無理だけど……大抵のことはアドバイスしてあげられると思うわよ？" },
             { text: "「MT Extra」なんてフォントは滅多に使わないものね。" },
             { text: "お勧めフォントの最後に記述されている違和感……\n何かあると察せられたって本当にすごいよ。" },
             { text: "きっと、「Font list」に記述しておいた文章も読めたんでしょ？" },
